@@ -17,20 +17,24 @@ async def on_ready():
 @tasks.loop(minutes=15)
 async def reminder():
     print("Starte Loop")
+    
     with open(
         "youtubedata.json", 
         "r", 
         encoding="UTF-8"
     ) as f:
+        
         data = json.load(f)
 
     check = data["video_check"]
     name = "".join(data["url"])
 
     for channel in data["url"]:
+        
         youtube_channel = Channel(
             "".join(channel)
         )
+        
         print(f"Joined {channel}")
 
     for url in youtube_channel.video_urls[:1]:
@@ -40,11 +44,13 @@ async def reminder():
             print("Nachricht geschickt!")
 
             data["video_check"].append(url)
+            
             with open(
                 "youtubedata.json", 
                 "w", 
                 encoding='UTF-8'
             ) as data_file:
+                
                 json.dump(
                     data, 
                     data_file, 
