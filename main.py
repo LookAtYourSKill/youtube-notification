@@ -11,7 +11,9 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():
-    print("Ich bin an lol!")
+    print(
+        "Ich bin an lol!"
+    )
 
 
 @tasks.loop(minutes=15)
